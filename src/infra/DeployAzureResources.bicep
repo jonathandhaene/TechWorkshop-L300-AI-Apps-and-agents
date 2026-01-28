@@ -8,7 +8,7 @@ param location string = resourceGroup().location
 var cosmosDbName = '${uniqueString(resourceGroup().id)}-cosmosdb'
 var cosmosDbDatabaseName = 'zava'
 var storageAccountName = '${uniqueString(resourceGroup().id)}sa'
-var aiFoundryName = 'aif-${uniqueString(resourceGroup().id)}'
+var aiFoundryName = 'aif-${uniqueString(resourceGroup().id)}sc'
 var aiProjectName = 'proj-${uniqueString(resourceGroup().id)}'
 var webAppName = '${uniqueString(resourceGroup().id)}-app'
 var appServicePlanName = '${uniqueString(resourceGroup().id)}-cosu-asp'
@@ -20,7 +20,7 @@ var registrySku = 'Standard'
 
 // Ensure the current resource group has the required tag via a subscription-scoped module
 module updateRgTags 'updateRgTags.bicep' = {
-  name: 'updateRgTags'
+  name: 'updateRgTagsModule'
   scope: subscription()
   params: {
     rgName: resourceGroup().name
