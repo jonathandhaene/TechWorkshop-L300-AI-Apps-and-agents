@@ -38,6 +38,7 @@ jobs:
         run: |
           cd src/
           docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest .
+          docker tag chat-app ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io/chat-app:latest
           docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         env:
           AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
