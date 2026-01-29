@@ -55,6 +55,6 @@ src/.env
 *.azuredevops
 
 # Github
-.github/
+#.github/
 parameters.json
 .azure
