@@ -46,6 +46,7 @@ out/
 *.swo
 
 # Secret files
+src/.env
 .env
 .env.*
 
