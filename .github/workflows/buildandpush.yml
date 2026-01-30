@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+  AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io
   AZURE_CONTAINER_REGISTRY_USERNAME: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
   AZURE_CONTAINER_REGISTRY_PASSWORD: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
   IMAGE_NAME: chat-app
@@ -44,15 +44,15 @@ jobs:
       - name: Log in to Azure Container Registry
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
+          login-server: ${{ env.AZURE_CONTAINER_REGISTRY }}
           username: ${{ env.AZURE_CONTAINER_REGISTRY_USERNAME }}
           password: ${{ env.AZURE_CONTAINER_REGISTRY_PASSWORD }}
 
       - name: Build and push Docker image
         run: |
           cd src/
-          docker build -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.IMAGE_NAME }}:latest .
-          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.IMAGE_NAME }}:latest
+          docker build -t ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest .
+          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         env:
           AZURE_CONTAINER_REGISTRY: ${{ env.AZURE_CONTAINER_REGISTRY }}
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
